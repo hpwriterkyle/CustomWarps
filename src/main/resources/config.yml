@@ -1,0 +1,49 @@
+#just config
+default:  #一般配置
+  warps: 10 #传送点数量 另外在设置个别玩家传送点数量的时候 若数量为0 请设置为-1
+  cost-set: 0 #设置传送点消耗的游戏币
+  cost-teleport: 0 #每次传送需要消耗的游戏币
+  cooldown: 10 #传送冷却
+  wait-time: 3 #传送等待时长
+gui:
+  display: "&a玩家传送菜单"  #传送菜单名字
+  item:
+    id: 133 #传送gui物品id
+    data: 0 #传送gui物品附加值
+bannedworld: #禁用传送点的世界名
+  - idk
+language:
+  add-success: "&a添加成功!"
+  add-failed: "&c你没有足够的传送点位了!"
+  error-number: "&c传送点数应为整数"
+  remove-success: "&a删除成功"
+  cost-set-failed: "&c设置传送点的金钱不足!"
+  cost-teleport-failed: "&c传送到传送点的金钱不足"
+  success-teleport: "&a传送成功!"
+  world-failed: "&c错误的世界" #若处于被限制区域中 亦会提示此信息!
+  item-description-normal:   #世界名变量为%w x,y,z轴标量分别为%x,%y,%z
+    - "&7点击传送"
+    - "&f位于&7%w&7&o世界的&7%x,%y,%z"
+  item-description-remove:
+    - "&f位于&7%w&7&o世界的&7%x,%y,%z"
+    - ""
+    - "&c点击删除"
+  help:
+    - "&7=============================================="
+    - "&f/cw warps &7打开传送面板"
+    - "&f/cw setwarp [id]"
+    - "&f/cw removewarp"
+    - "&f/cw setlimit [player] [number]"
+    - "&f/cw addlimit [player] [number]"
+    - "&f/cw removelimit [player] [number]"
+    - "&f/cw reload"
+    - " "
+    - "&f/climit add [id] &7增加被设置的名为[id]的限制区域"
+    - "&f/climit remove [id] &7删除被设置的名为[id]的限制区域"
+    - "&8请&cop&8使用&e钓鱼竿&8在&b创造模式&8下左右键方块以选定限制设置传送区域的两个点"
+    - "&7==============================================="
+  cooldown: "&c传送还在冷却中!"
+  block-teleport: "&c传送被打断"
+  start-teleport: "&a传送开始!"
+  reload-success: "&a重装成功"
+  success-set: "设置成功!"

@@ -1,0 +1,11 @@
+name: CustomWarps
+version: '${project.version}'
+main: top.ilhyc.customwarps
+description: just the customwarps
+softdepend: [Multiverse-Core,Vault]
+commands:
+  customwarps:
+    aliases: cw
+  cset:
+  climit:
+    aliases: clt
