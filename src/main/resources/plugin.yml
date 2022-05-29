@@ -1,6 +1,6 @@
 name: CustomWarps
 version: '${project.version}'
-main: top.ilhyc.customwarps
+main: top.ilhyc.customwarps.customwarps
 description: just the customwarps
 softdepend: [Multiverse-Core,Vault]
 commands:
