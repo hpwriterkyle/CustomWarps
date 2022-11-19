@@ -7,10 +7,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import top.ilhyc.customwarps.CustomWarps;
 import top.ilhyc.customwarps.GuiItemOperator;
 import top.ilhyc.customwarps.PluginData;
 import top.ilhyc.customwarps.WarpPoint;
-import top.ilhyc.customwarps.CustomWarps;
 
 import java.util.Arrays;
 
@@ -51,7 +51,7 @@ public class MainGui implements Listener, InventoryHolder {
                     }else{
                         break;
                     }
-                }
+                }//
             }
             return in;
     }

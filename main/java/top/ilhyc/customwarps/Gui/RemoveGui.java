@@ -6,10 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import top.ilhyc.customwarps.CustomWarps;
 import top.ilhyc.customwarps.GuiItemOperator;
 import top.ilhyc.customwarps.PluginData;
 import top.ilhyc.customwarps.WarpPoint;
-import top.ilhyc.customwarps.CustomWarps;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +49,7 @@ public class RemoveGui implements InventoryHolder {
                     ItemStack is = GuiItemOperator.createItem(Material.getMaterial(PluginData.getConfig().getInt("gui.item.id")), (short) PluginData.getConfig().getInt("gui.item.data"), 1, wp.getName(), replacedString(PluginData.getConfig().getStringList("language.item-description-remove"), wp));
                     in.setItem(i, is);
                     i++;
-                }
+                }//
             }
         }
         return in;
