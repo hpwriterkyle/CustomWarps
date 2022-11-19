@@ -8,7 +8,7 @@ import java.util.List;
 public class WarpPoint {
     public String name;
     public Location location;
-    public int ser;//
+    public int ser;
 
     public static void storeWarpPoint(WarpPoint wp, Player p){
         PluginData pd = new PluginData(CustomWarps.playerdata,p.getName()+".yml");
