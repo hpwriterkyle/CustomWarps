@@ -39,7 +39,7 @@ public final class CustomWarps extends JavaPlugin {
             try {
                 this.getDataFolder().mkdirs();
                 saveDefaultConfig();
-            } catch (Exception e) {
+            } catch (Exception e) {//
                 e.printStackTrace();
             }
         }

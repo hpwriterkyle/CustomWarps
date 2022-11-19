@@ -20,12 +20,13 @@ import top.ilhyc.customwarps.gui.MainGui;
 import top.ilhyc.customwarps.gui.RemoveGui;
 
 
-public class MainListener implements Listener {
+public class MainListener implements Listener {//
+
     @EventHandler
-    public void clickWarp(InventoryClickEvent e){
-        if(e.getClickedInventory()!=null&&e.getView().getTopInventory().getHolder()!=null&&e.getView().getTopInventory().getHolder() instanceof MainGui) {
+    public void clickWarp(InventoryClickEvent e) {
+        if (e.getClickedInventory() != null && e.getView().getTopInventory().getHolder() != null && e.getView().getTopInventory().getHolder() instanceof MainGui) {
             e.setCancelled(true);
-            if(e.getClickedInventory().equals(e.getView().getTopInventory())) {
+            if (e.getClickedInventory().equals(e.getView().getTopInventory())) {
                 MainGui mg = (MainGui) e.getView().getTopInventory().getHolder();
                 int slot = mg.getPage() * 45 + e.getRawSlot();
                 if (e.getSlotType() != InventoryType.SlotType.OUTSIDE) {

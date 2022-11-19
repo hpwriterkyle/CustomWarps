@@ -24,7 +24,7 @@ public class GuiItemOperator {
         return is;
     }
 
-
+//
     public static ItemStack createItem(Material material, short data, int amount, String display) {
         ItemStack is = new ItemStack(material, amount, data);
         ItemMeta im = is.getItemMeta();

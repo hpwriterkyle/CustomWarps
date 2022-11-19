@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetCommand implements CommandExecutor {
-    @Override
+    @Override//
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;

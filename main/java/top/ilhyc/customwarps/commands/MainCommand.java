@@ -44,7 +44,7 @@ public class MainCommand implements CommandExecutor {
                         if (!PluginData.getConfig().getString("bannedworld").contains(p.getWorld().getName()) && CustomWarps.limitfields.values().stream().noneMatch(a -> a.inLimited(p.getLocation()))) {
                             boolean allowed = CustomWarps.getEco() == null;
                             if (allowed|| CustomWarps.getEco().withdrawPlayer(commandSender.getName(), PluginData.getConfig().getInt("default.cost-set")).transactionSuccess()) {
-                                if (CustomWarps.map.get(p.getName()) == null) {
+                                if (CustomWarps.map.get(p.getName()) == null) {//
                                     ArrayList<WarpPoint> awp = new ArrayList<>();
                                     CustomWarps.map.put(p.getName(), awp);
                                 }

@@ -199,20 +199,21 @@ public class PluginData {
         return map;
     }
 
-    public void setLocation(String path, Location p){
-        fc.set(path+".world",p.getWorld().getName());
-        fc.set(path+".x",p.getBlockX());
-        fc.set(path+".y",p.getBlockY());
-        fc.set(path+".z",p.getBlockZ());
-    }
-    public Location getLocation(String path){
-        World w = Bukkit.getWorld(fc.getString(path+".world"));
-        if(w==null){
+    public void setLocation(String path, Location p) {
+        fc.set(path + ".world", p.getWorld().getName());
+        fc.set(path + ".x", p.getBlockX());
+        fc.set(path + ".y", p.getBlockY());
+        fc.set(path + ".z", p.getBlockZ());
+    }//
+
+    public Location getLocation(String path) {
+        World w = Bukkit.getWorld(fc.getString(path + ".world"));
+        if (w == null) {
             MultiverseWorld ww = CustomWarps.core.getMVWorldManager().getMVWorld(path);
             w = ww.getCBWorld();
         }
-        if(w==null){
-            CustomWarps.pis.logger("&c"+fc.getString(path+".world")+"&c世界不存在于所有被服务端核心或多世界加载的世界列表中");
+        if (w == null) {
+            CustomWarps.pis.logger("&c" + fc.getString(path + ".world") + "&c世界不存在于所有被服务端核心或多世界加载的世界列表中");
             CustomWarps.pis.logger("&e现已自动将此次世界传送点世界设置为world");
             w = Bukkit.getWorld("world");
         }
