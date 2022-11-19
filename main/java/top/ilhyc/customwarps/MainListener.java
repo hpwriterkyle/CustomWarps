@@ -24,6 +24,7 @@ import top.ilhyc.customwarps.gui.RemoveGui;
 
 
 public class MainListener implements Listener {
+    //
     @EventHandler
     public void clickWarp(InventoryClickEvent e){
         if(e.getClickedInventory()!=null&&e.getView().getTopInventory().getHolder()!=null&&e.getView().getTopInventory().getHolder() instanceof MainGui) {

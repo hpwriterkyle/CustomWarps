@@ -28,7 +28,7 @@ public class MainCommand implements CommandExecutor {
                                 WarpPoint.restoreWarpPoint(CustomWarps.map.get(op.getName()), op);
                             }
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.reload-success")));
-                        }
+                        } //
                     }
                 }
                 if (strings[0].equalsIgnoreCase("warps")) {

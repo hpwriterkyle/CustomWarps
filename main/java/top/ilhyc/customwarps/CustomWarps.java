@@ -24,7 +24,7 @@ public final class CustomWarps extends JavaPlugin {
     public static File data;
     public static HashMap<String, List<WarpPoint>> map = new HashMap<>();
     public static HashMap<String,Long> cooldown = new HashMap<>();
-    public static HashMap<UUID,WarpPoint> warpqueue = new HashMap<>();
+    public static HashMap<UUID,WarpPoint> warpqueue = new HashMap<>();//
     public static HashMap<String, LimitField> limitfields = new HashMap<>();
     public static File save;
     private static Economy eco = null;

@@ -11,6 +11,7 @@ public class LimitField{
             limited[1] = new Location(lt.getWorld(),Math.max(lo.getBlockX(),lt.getBlockX()),Math.max(lo.getBlockY(),lt.getBlockY()),Math.max(lo.getBlockZ(),lt.getBlockZ()));
         }
     }
+    //
 
     public Location getOneSide(){
         return limited[0];

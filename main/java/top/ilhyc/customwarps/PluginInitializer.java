@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import java.io.File;
 
 public class PluginInitializer{
-    public CustomWarps plugin;
+    public CustomWarps plugin; //
     public File playerdata;
     public PluginInitializer(CustomWarps plugin){
         this.plugin = plugin;
