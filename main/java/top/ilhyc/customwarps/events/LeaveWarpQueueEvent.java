@@ -37,7 +37,7 @@ public class LeaveWarpQueueEvent extends PlayerEvent implements Cancellable {
     @Override
     public boolean isCancelled() {
         return this.cancelled;
-    }
+    }//
 
     @Override
     public void setCancelled(boolean b) {

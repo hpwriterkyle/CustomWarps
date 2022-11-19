@@ -205,8 +205,6 @@ public class PluginData {
         fc.set(path+".y",p.getBlockY());
         fc.set(path+".z",p.getBlockZ());
     }
-
-    //
     public Location getLocation(String path){
         World w = Bukkit.getWorld(fc.getString(path+".world"));
         if(w==null){

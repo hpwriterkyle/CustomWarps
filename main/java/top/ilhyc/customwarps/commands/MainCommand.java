@@ -5,11 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import top.ilhyc.customwarps.gui.MainGui;
-import top.ilhyc.customwarps.gui.RemoveGui;
+import top.ilhyc.customwarps.CustomWarps;
 import top.ilhyc.customwarps.PluginData;
 import top.ilhyc.customwarps.WarpPoint;
-import top.ilhyc.customwarps.CustomWarps;
+import top.ilhyc.customwarps.gui.MainGui;
+import top.ilhyc.customwarps.gui.RemoveGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class MainCommand implements CommandExecutor {
                                 WarpPoint.restoreWarpPoint(CustomWarps.map.get(op.getName()), op);
                             }
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.reload-success")));
-                        } //
+                        }
                     }
                 }
                 if (strings[0].equalsIgnoreCase("warps")) {

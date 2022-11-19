@@ -45,7 +45,7 @@ public class PrelimitedEvent extends PlayerEvent implements Cancellable {
 
     public void setType(Type type) {
         this.type = type;
-    }//
+    }
 
     public Location getClicked() {
         return clicked;

@@ -4,15 +4,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import top.ilhyc.customwarps.CustomWarps;
 import top.ilhyc.customwarps.PluginData;
 import top.ilhyc.customwarps.WarpPoint;
-import top.ilhyc.customwarps.CustomWarps;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SetCommand implements CommandExecutor {
-    @Override //
+    @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;

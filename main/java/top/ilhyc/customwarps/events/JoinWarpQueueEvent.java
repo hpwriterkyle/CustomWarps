@@ -76,6 +76,6 @@ public class JoinWarpQueueEvent extends PlayerEvent implements Cancellable {
     @Override
     public void setCancelled(boolean b) {
         this.cancealled = b;
-    }
+    }//
 
 }

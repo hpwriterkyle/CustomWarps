@@ -2,7 +2,6 @@ package top.ilhyc.customwarps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -14,8 +13,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import top.ilhyc.customwarps.events.JoinWarpQueueEvent;
 import top.ilhyc.customwarps.events.LeaveWarpQueueEvent;
 import top.ilhyc.customwarps.events.PrelimitedEvent;
@@ -24,7 +21,6 @@ import top.ilhyc.customwarps.gui.RemoveGui;
 
 
 public class MainListener implements Listener {
-    //
     @EventHandler
     public void clickWarp(InventoryClickEvent e){
         if(e.getClickedInventory()!=null&&e.getView().getTopInventory().getHolder()!=null&&e.getView().getTopInventory().getHolder() instanceof MainGui) {
