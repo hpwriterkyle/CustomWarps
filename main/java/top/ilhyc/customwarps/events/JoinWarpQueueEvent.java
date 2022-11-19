@@ -40,7 +40,7 @@ public class JoinWarpQueueEvent extends PlayerEvent implements Cancellable {
 
     public void work(){
         boolean allowed = CustomWarps.getEco() == null;
-        if (allowed|| CustomWarps.getEco().withdrawPlayer(getPlayer().getName(), PluginData.getConfig().getInt("default.cost-set")).transactionSuccess()) {
+        if (allowed|| CustomWarps.getEco().withdrawPlayer(getPlayer().getName(), PluginData.getConfig().getInt("default.cost-teleport")).transactionSuccess()) {
             (getPlayer()).sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.start-teleport")));
             CustomWarps.warpqueue.put(getPlayer().getUniqueId(),getWp());
             BukkitTask bt = new BukkitRunnable() {
