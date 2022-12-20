@@ -82,10 +82,13 @@ public class MainCommand implements CommandExecutor {
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.world-failed")));
                         }
                     }
-                } else if (strings.length > 2) {
-                    Player target = Bukkit.getPlayer(strings[1]);
-                    if (strings[0].equalsIgnoreCase("setlimit")) {
-                        if (p.isOp()) {
+                    System.out.println("asdaasd");
+                    if (strings.length > 2) {
+                        Player target = Bukkit.getPlayer(strings[1]);
+                        if(!p.isOp()){
+                            return false;
+                        }
+                        if (strings[0].equalsIgnoreCase("setlimit")) {
                             PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
                             try {
                                 pds.set("number", Integer.parseInt(strings[2]));
@@ -95,10 +98,8 @@ public class MainCommand implements CommandExecutor {
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.success-set")));
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                             pds.save();
-                        }
-                    } else if (strings[0].equalsIgnoreCase("addlimit")) {
-                        PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
-                        if (p.isOp()) {
+                        } else if (strings[0].equalsIgnoreCase("addlimit")) {
+                            PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
                             try {
                                 int n = PluginData.getConfig().getInt("default.warps");
                                 if (pds.getInt("number") != 0) {
@@ -111,9 +112,7 @@ public class MainCommand implements CommandExecutor {
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.success-set")));
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                             pds.save();
-                        }
-                    } else if (strings[0].equalsIgnoreCase("removelimit")) {
-                        if (p.isOp()) {
+                        } else if (strings[0].equalsIgnoreCase("removelimit")) {
                             PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
                             try {
                                 int n = PluginData.getConfig().getInt("default.warps");
@@ -128,9 +127,9 @@ public class MainCommand implements CommandExecutor {
                             pds.save();
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                         }
+                    } else {
+                        PluginData.getConfig().getStringList("language.help").stream().forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
                     }
-            } else {
-                PluginData.getConfig().getStringList("language.help").stream().forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
             }
         } else {
             PluginData.getConfig().getStringList("language.help").stream().forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
