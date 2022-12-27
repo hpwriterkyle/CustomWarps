@@ -10,6 +10,7 @@ import top.ilhyc.customwarps.CustomWarps;
 import top.ilhyc.customwarps.GuiItemOperator;
 import top.ilhyc.customwarps.PluginData;
 import top.ilhyc.customwarps.WarpPoint;
+import top.ilhyc.customwarps.permissions.PermissionManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,11 +36,15 @@ public class RemoveGui implements InventoryHolder {
     public static Inventory getGui(Player p,boolean b){
         int inn = 54;
         Inventory in = Bukkit.createInventory(new RemoveGui(p),inn, CustomWarps.Auto(PluginData.getConfig().getString("gui.display")));
-        PluginData pd = new PluginData(CustomWarps.playerdata,p.getName()+".yml");
+        int mp = -1;
+        try{
+            mp = PermissionManager.getPermissionObject("customwarps.limit",p,Integer::parseInt);
+        }catch (Exception ignored){
+        }
         for(int i =  45;i<inn;i++){
             in.setItem(i,new ItemStack(Material.STAINED_GLASS_PANE,(short)1));
         }
-        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(pd.getInt("warps")==0? PluginData.getConfig().getInt("default.warps"):pd.getInt("warps"))));
+        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(mp==0? PluginData.getConfig().getInt("default.warps"):mp)));
         in.setItem(53,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f下一页",Arrays.asList("&c已是最后一页")));
         in.setItem(45,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f上一页",Arrays.asList("&c已是第一页")));
         if(CustomWarps.map.get(p.getName())!=null){

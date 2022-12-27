@@ -63,7 +63,7 @@ public final class CustomWarps extends JavaPlugin {
             pis.logger("[CustomWarps]应当暂时已经成功安装Vault插件!");
         }
         loadConfig();
-        pis.logger("插件已加载了"+map.keySet().size()+"个传送点");
+        pis.logger("插件已加载了"+map.keySet().size()+"个玩家的传送点组");
         pis.logger("插件已加载了"+limitfields.keySet().size()+"个限制区");
     }
 
