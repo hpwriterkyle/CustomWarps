@@ -14,6 +14,7 @@ import top.ilhyc.customwarps.permissions.PermissionManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainCommand implements CommandExecutor {
     @Override
@@ -51,11 +52,11 @@ public class MainCommand implements CommandExecutor {
                                 }
                                 int number = -1;
                                 try {
-                                    number = PermissionManager.getPermissionObject("customwarps.limit", p, Integer::parseInt);
+                                    number = PermissionManager.getPermissionObject("customwarps.limit",p,a->a.equals("*")?-2:Integer.parseInt(a));
                                 }catch (NullPointerException ignored){
                                 }
                                 if (number != -1) {
-                                    if (number <= CustomWarps.map.get(p.getName()).size()) {
+                                    if (number <= CustomWarps.map.get(p.getName()).size()&&number!=-2) {
                                         p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.add-failed")));
                                         return true;
                                     }
@@ -93,7 +94,11 @@ public class MainCommand implements CommandExecutor {
                         Player target = Bukkit.getPlayer(strings[1]);
                         int amount = 0;
                         try {
-                            amount = Integer.parseInt(strings[2]);
+                            if(!strings[2].equals("*")) {
+                                amount = Integer.parseInt(strings[2]);
+                            }else {
+                                amount = -2;
+                            }
                         }catch (NumberFormatException ex){
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.error-number")));
                             return false;
@@ -102,8 +107,7 @@ public class MainCommand implements CommandExecutor {
                             return false;
                         }
                         if (strings[0].equalsIgnoreCase("setlimit")) {
-                            System.out.println(setAmount(p,amount));
-                            System.out.println(getAmount(p));
+                            setAmount(target,amount);
                             p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.success-set")));
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                             return true;
@@ -214,7 +218,8 @@ public class MainCommand implements CommandExecutor {
     }
 
     private static String setAmount(Player p,int value){
-        return PermissionManager.setPermissionObject("customwarps.limit",p,String.valueOf(value));
+        String amount = value==-2?"*":String.valueOf(value);
+        return PermissionManager.setPermissionObject("customwarps.limit",p,amount);
     }
 
     private static int getAmount(Player p){

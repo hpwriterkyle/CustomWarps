@@ -22,7 +22,7 @@ public abstract class Permission<T> {
     }
 
     public List<T> get(Player p){
-        return p.getEffectivePermissions().stream().filter(a->a.getPermission().contains(this.root)).map(a->translate(a.getPermission())).collect(Collectors.toList());
+        return p.getEffectivePermissions().stream().filter(a->a.getPermission().contains(this.root)&&a.getValue()).map(a->translate(a.getPermission())).collect(Collectors.toList());
     }
 
     public abstract T translate(String s);

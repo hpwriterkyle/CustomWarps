@@ -38,13 +38,17 @@ public class RemoveGui implements InventoryHolder {
         Inventory in = Bukkit.createInventory(new RemoveGui(p),inn, CustomWarps.Auto(PluginData.getConfig().getString("gui.display")));
         int mp = -1;
         try{
-            mp = PermissionManager.getPermissionObject("customwarps.limit",p,Integer::parseInt);
+            mp = PermissionManager.getPermissionObject("customwarps.limit",p,a->a.equals("*")?-2:Integer.parseInt(a));
         }catch (Exception ignored){
+        }
+        String amount = "∞";
+        if(mp!=-2){
+            amount = mp+"";
         }
         for(int i =  45;i<inn;i++){
             in.setItem(i,new ItemStack(Material.STAINED_GLASS_PANE,(short)1));
         }
-        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(mp==0? PluginData.getConfig().getInt("default.warps"):mp)));
+        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(mp==0? PluginData.getConfig().getInt("default.warps"):amount)));
         in.setItem(53,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f下一页",Arrays.asList("&c已是最后一页")));
         in.setItem(45,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f上一页",Arrays.asList("&c已是第一页")));
         if(CustomWarps.map.get(p.getName())!=null){
@@ -63,11 +67,20 @@ public class RemoveGui implements InventoryHolder {
     public static Inventory getGui(Player p,boolean b,int page){
         int inn = 54;
         Inventory in = Bukkit.createInventory(new RemoveGui(p,page),inn, CustomWarps.Auto(PluginData.getConfig().getString("gui.display")));
-        PluginData pd = new PluginData(CustomWarps.playerdata,p.getName()+".yml");
+      //  PluginData pd = new PluginData(CustomWarps.playerdata,p.getName()+".yml");
+        int mp = -1;
+        try{
+            mp = PermissionManager.getPermissionObject("customwarps.limit",p,a->a.equals("*")?-2:Integer.parseInt(a));
+        }catch (Exception ignored){
+        }
+        String amount = "∞";
+        if(mp!=-2){
+            amount = mp+"";
+        }
         for(int i =  45;i<inn;i++){
             in.setItem(i,new ItemStack(Material.STAINED_GLASS_PANE,(short)1));
         }
-        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(pd.getInt("warps")==0? PluginData.getConfig().getInt("default.warps"):pd.getInt("warps"))));
+        in.setItem(49,GuiItemOperator.createItem(Material.ANVIL,(short) 0, CustomWarps.map.get(p.getName()).size(), "&a"+ CustomWarps.map.get(p.getName()).size()+"&7/&c"+(mp==-1? PluginData.getConfig().getInt("default.warps"):amount)));
         in.setItem(53,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f下一页",(page+1)*45> CustomWarps.map.get(p.getName()).size()?Arrays.asList("&c已是最后一页"):Arrays.asList("&7点击进入下一页")));
         in.setItem(45,GuiItemOperator.createItem(Material.ARROW,(short) 0,1,"&f上一页",page==0?Arrays.asList("&c已是第一页"):Arrays.asList("&7点击返回上一页")));
         if(CustomWarps.map.get(p.getName())!=null){

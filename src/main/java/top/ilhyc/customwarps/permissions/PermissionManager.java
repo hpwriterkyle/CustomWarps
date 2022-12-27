@@ -33,7 +33,7 @@ public class PermissionManager {
         }
         for(PermissionAttachmentInfo pa:this.player.getEffectivePermissions()) {
             if(pa.getPermission().contains(root)){
-                this.permissionAttachment.unsetPermission(pa.getPermission());
+                this.permissionAttachment.setPermission(pa.getPermission(),false);
             }
         }
     }
