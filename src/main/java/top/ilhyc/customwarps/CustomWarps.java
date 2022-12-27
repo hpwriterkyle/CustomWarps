@@ -10,6 +10,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import top.ilhyc.customwarps.commands.LimitCommand;
 import top.ilhyc.customwarps.commands.MainCommand;
+import top.ilhyc.customwarps.commands.MiscCommand;
 import top.ilhyc.customwarps.commands.SetCommand;
 
 import java.io.File;
@@ -53,6 +54,7 @@ public final class CustomWarps extends JavaPlugin {
         getCommand("customwarps").setExecutor(new MainCommand());
         getCommand("cset").setExecutor(new SetCommand());
         getCommand("climit").setExecutor(new LimitCommand());
+        getCommand("cmisc").setExecutor(new MiscCommand());
         save = new File(data,"data.yml");
         if(!setupEconomy()){
             pis.logger("[CustomWarps]应当暂时发现了一个前置的漏洞!");
@@ -82,6 +84,7 @@ public final class CustomWarps extends JavaPlugin {
 
     public static void loadConfig(){
         map.clear();
+     //   MiscCommand.sync(Bukkit.getConsoleSender());
         if(playerdata.listFiles()!=null) {
             for (File f : playerdata.listFiles()) {
                 if (f != null) {
@@ -137,7 +140,7 @@ public final class CustomWarps extends JavaPlugin {
         return eco;
     }
 
-    public static boolean incooldown(Long t,String p){
+    public static boolean inCooldown(Long t, String p){
         if(cooldown.get(p)!=null) {
             return t <= cooldown.get(p) + PluginData.getConfig().getInt("default.cooldown") * 1000L;
         }

@@ -9,3 +9,5 @@ commands:
   cset:
   climit:
     aliases: clt
+  cmisc:
+    aliases: csync

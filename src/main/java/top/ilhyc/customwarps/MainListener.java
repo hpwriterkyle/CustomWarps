@@ -32,7 +32,7 @@ public class MainListener implements Listener {//
                 if (e.getSlotType() != InventoryType.SlotType.OUTSIDE) {
                     if (e.getRawSlot() < 45) {
                         if (CustomWarps.map.get(e.getWhoClicked().getName()).size() >= slot + 1) {
-                            if (!CustomWarps.incooldown(System.currentTimeMillis(), e.getWhoClicked().getName())) {
+                            if (!CustomWarps.inCooldown(System.currentTimeMillis(), e.getWhoClicked().getName())) {
                                 JoinWarpQueueEvent event = new JoinWarpQueueEvent((Player) e.getWhoClicked(), CustomWarps.map.get(e.getWhoClicked().getName()).get(slot));
                                 //             if (customwarps.getEco().withdrawPlayer(e.getWhoClicked().getName(), PluginData.getConfig().getDouble("default.cost-teleport")).transactionSuccess()) {
                                 Bukkit.getPluginManager().callEvent(event);
