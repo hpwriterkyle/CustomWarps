@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import top.ilhyc.customwarps.events.JoinWarpQueueEvent;
 import top.ilhyc.customwarps.events.LeaveWarpQueueEvent;
@@ -142,5 +143,10 @@ public class MainListener implements Listener {//
                 }
             }
         }
+    }
+
+    @EventHandler //确保uuid正常
+    public void onJoin(PlayerJoinEvent e){
+        CustomWarps.checkInValid(new PluginData(e.getPlayer()+".yml")); //low efficiency
     }
 }

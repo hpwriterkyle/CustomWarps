@@ -14,22 +14,19 @@ import top.ilhyc.customwarps.commands.MiscCommand;
 import top.ilhyc.customwarps.commands.SetCommand;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public final class CustomWarps extends JavaPlugin {
     public static File playerdata;
     public static PluginInitializer pis;
     public static File data;
-    public static HashMap<String, List<WarpPoint>> map = new HashMap<>();
-    public static HashMap<String,Long> cooldown = new HashMap<>();
-    public static HashMap<UUID,WarpPoint> warpqueue = new HashMap<>();
-    public static HashMap<String, LimitField> limitfields = new HashMap<>();
+    public static Map<String, List<WarpPoint>> map = new HashMap<>();
+    public static Map<String,Long> cooldown = new HashMap<>();
+    public static Map<UUID,WarpPoint> warpqueue = new HashMap<>();
+    public static Map<String, LimitField> limitfields = new HashMap<>();
     public static File save;
     private static Economy eco = null;
-    public static HashMap<Player, Location[]> limitedmap = new HashMap<>();
+    public static Map<Player, Location[]> limitedmap = new HashMap<>();
     public static MultiverseCore core;
 
     @Override
@@ -146,4 +143,25 @@ public final class CustomWarps extends JavaPlugin {
         }
         return false;
     }
+
+    public static void checkInValid(PluginData pd){
+        Player p = Bukkit.getPlayer(PluginData.deleteYml(pd.f));
+        String uuid = "player.uuid";
+        if(pd.getString(uuid)==null){
+            pd.set(uuid,p.getUniqueId().toString());
+            pd.save();
+            return;
+        }
+        if(p.getUniqueId().toString().equals(pd.getString(uuid))){
+            return;
+        }
+        p = Bukkit.getPlayer(pd.getString(uuid));
+        if(!pd.f.renameTo(new File(CustomWarps.pis.plugin.getDataFolder(),p.getName()+".yml"))){
+            PluginData pds = new PluginData(p.getName());
+            checkInValid(pds);
+        }
+        pd.set(uuid,p.getUniqueId());
+        pd.save();
+    }
+
 }
