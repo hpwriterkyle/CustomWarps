@@ -147,6 +147,6 @@ public class MainListener implements Listener {//
 
     @EventHandler //确保uuid正常
     public void onJoin(PlayerJoinEvent e){
-        CustomWarps.checkInValid(new PluginData(e.getPlayer()+".yml")); //low efficiency
+        CustomWarps.checkInValid(new PluginData(CustomWarps.pis.playerdata,e.getPlayer().getName()+".yml")); //low efficiency
     }
 }

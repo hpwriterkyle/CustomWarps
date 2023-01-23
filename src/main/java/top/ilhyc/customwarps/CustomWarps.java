@@ -5,6 +5,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -145,7 +146,7 @@ public final class CustomWarps extends JavaPlugin {
     }
 
     public static void checkInValid(PluginData pd){
-        Player p = Bukkit.getPlayer(PluginData.deleteYml(pd.f));
+        OfflinePlayer p = Bukkit.getOfflinePlayer(PluginData.deleteYml(pd.f));
         String uuid = "player.uuid";
         if(pd.getString(uuid)==null){
             pd.set(uuid,p.getUniqueId().toString());
@@ -155,9 +156,9 @@ public final class CustomWarps extends JavaPlugin {
         if(p.getUniqueId().toString().equals(pd.getString(uuid))){
             return;
         }
-        p = Bukkit.getPlayer(pd.getString(uuid));
-        if(!pd.f.renameTo(new File(CustomWarps.pis.plugin.getDataFolder(),p.getName()+".yml"))){
-            PluginData pds = new PluginData(p.getName());
+        p = Bukkit.getPlayer(UUID.fromString(pd.getString(uuid)));
+        if(!pd.f.renameTo(new File(CustomWarps.pis.playerdata,p.getName()+".yml"))){
+            PluginData pds = new PluginData(CustomWarps.pis.playerdata,p.getName()+".ym");
             checkInValid(pds);
         }
         pd.set(uuid,p.getUniqueId());

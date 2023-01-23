@@ -18,6 +18,7 @@ import java.util.List;
 public class PluginData {
     //此类灵感来源于Forge插件 并对其源码进行部分修改操作而成(因为关乎甚小 因作者要求勿扰且直接开源 未曾打扰原作者以获取授权)
     //仅以此处表示敬意 若有要求 请联系本插件作者以删除
+    //注 即https://github.com/IICRAFT/RandomForge
     public File f;
     public FileConfiguration fc;
 
@@ -73,7 +74,7 @@ public class PluginData {
     }
 
     public String getString(String path) {
-        return CustomWarps.Auto(this.fc.getString(path));
+        return this.fc.getString(path)!=null?CustomWarps.Auto(this.fc.getString(path)):null;
     }
 
     public int getInt(String path) {
