@@ -72,9 +72,9 @@ public class MainCommand implements CommandExecutor {
                                 if (CustomWarps.map.get(p.getName()) != null) {
                                     lwp = CustomWarps.map.get(p.getName());
                                 }
-                                wp.ser = lwp.size();
-                                wp.location = p.getLocation();
-                                wp.name = strings[1];
+                                wp.setOrder(lwp.size());
+                                wp.setLocation(p.getLocation());
+                                wp.setName(strings[1]);
                                 lwp.add(wp);
                                 CustomWarps.map.put(p.getName(), lwp);
                                 WarpPoint.storeWarpPoint(wp, p);

@@ -50,7 +50,7 @@ public class JoinWarpQueueEvent extends PlayerEvent implements Cancellable {
                 public void run() {
                     i--;
                     if (i == 0) {
-                        getPlayer().teleport(getWp().location);
+                        getPlayer().teleport(getWp().getLocation());
                         CustomWarps.cooldown.put(getPlayer().getName(), System.currentTimeMillis());
                         (getPlayer()).sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.success-teleport")));
                         this.cancel();

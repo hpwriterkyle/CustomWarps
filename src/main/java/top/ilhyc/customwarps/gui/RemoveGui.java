@@ -105,6 +105,6 @@ public class RemoveGui implements InventoryHolder {
     }
 
     public static List<String> replacedString(List<String> s, WarpPoint wp){
-        return s.stream().map(a->a.replaceAll("%w",wp.location.getWorld().getName()).replaceAll("%x",wp.location.getBlockX()+"").replaceAll("%y",wp.location.getBlockY()+"").replace("%z",wp.location.getBlockZ()+"")).collect(Collectors.toList());
+        return s.stream().map(a->a.replaceAll("%w",wp.getLocation().getWorld().getName()).replaceAll("%x",wp.getLocation().getBlockX()+"").replaceAll("%y",wp.getLocation().getBlockY()+"").replace("%z",wp.getLocation().getBlockZ()+"")).collect(Collectors.toList());
     }
 }

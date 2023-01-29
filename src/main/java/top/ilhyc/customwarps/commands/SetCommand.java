@@ -40,9 +40,9 @@ public class SetCommand implements CommandExecutor {
                     if (CustomWarps.map.get(p.getName()) != null) {
                         lwp = CustomWarps.map.get(p.getName());
                     }
-                    wp.ser = lwp.size();
-                    wp.location = p.getLocation();
-                    wp.name = CustomWarps.Auto(strings[0]);
+                    wp.setOrder(lwp.size());
+                    wp.setLocation(p.getLocation());
+                    wp.setName(CustomWarps.Auto(strings[0]));
                     lwp.add(wp);
                     CustomWarps.map.put(p.getName(), lwp);
                     WarpPoint.storeWarpPoint(wp, p);

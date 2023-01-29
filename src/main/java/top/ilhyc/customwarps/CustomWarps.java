@@ -9,6 +9,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import top.ilhyc.customwarps.api.CustomWarper;
 import top.ilhyc.customwarps.commands.LimitCommand;
 import top.ilhyc.customwarps.commands.MainCommand;
 import top.ilhyc.customwarps.commands.MiscCommand;
@@ -29,6 +30,7 @@ public final class CustomWarps extends JavaPlugin {
     private static Economy eco = null;
     public static Map<Player, Location[]> limitedmap = new HashMap<>();
     public static MultiverseCore core;
+    private static final CustomWarper customWarper = new CustomWarper();
 
     @Override
     public void onEnable() {
@@ -92,9 +94,9 @@ public final class CustomWarps extends JavaPlugin {
                     if (pd.getKeys("warps") != null) {
                         for (String s : pd.getKeys("warps")) {
                             WarpPoint wp = new WarpPoint();
-                            wp.location = pd.getLocation("warps" + "." + s + ".location");
-                            wp.name = pd.getString("warps." + s + ".name");
-                            wp.ser = n;
+                            wp.setLocation(pd.getLocation("warps" + "." + s + ".location"));
+                            wp.setName(pd.getString("warps." + s + ".name"));
+                            wp.setOrder(n);
                             lwp.add(wp);
                             n++;
                         }
@@ -163,6 +165,10 @@ public final class CustomWarps extends JavaPlugin {
         }
         pd.set(uuid,p.getUniqueId());
         pd.save();
+    }
+
+    public static CustomWarper getApi(){
+        return customWarper;
     }
 
 }
