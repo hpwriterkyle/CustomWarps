@@ -14,6 +14,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import top.ilhyc.customwarps.events.JoinWarpQueueEvent;
 import top.ilhyc.customwarps.events.LeaveWarpQueueEvent;
 import top.ilhyc.customwarps.events.PrelimitedEvent;
@@ -25,9 +26,10 @@ public class MainListener implements Listener {//
 
     @EventHandler
     public void clickWarp(InventoryClickEvent e) {
-        if (e.getClickedInventory() != null && e.getView().getTopInventory().getHolder() != null && e.getView().getTopInventory().getHolder() instanceof MainGui) {
+        Inventory inventory = e.getInventory();
+        if (inventory != null && inventory.getHolder() != null && inventory.getHolder() instanceof MainGui) {
             e.setCancelled(true);
-            if (e.getClickedInventory().equals(e.getView().getTopInventory())) {
+            if (inventory.equals(e.getView().getTopInventory())) {
                 MainGui mg = (MainGui) e.getView().getTopInventory().getHolder();
                 int slot = mg.getPage() * 45 + e.getRawSlot();
                 if (e.getSlotType() != InventoryType.SlotType.OUTSIDE) {
@@ -71,9 +73,10 @@ public class MainListener implements Listener {//
 
     @EventHandler
     public void removeWarp(InventoryClickEvent e){
-        if(e.getClickedInventory()!=null&&e.getView().getTopInventory().getHolder()!=null&&e.getView().getTopInventory().getHolder() instanceof RemoveGui) {
+        Inventory inventory = e.getInventory();
+        if(inventory!=null&&inventory.getHolder()!=null&&inventory.getHolder() instanceof RemoveGui) {
             e.setCancelled(true);
-            if(e.getClickedInventory().equals(e.getView().getTopInventory())) {
+            if(inventory.equals(e.getView().getTopInventory())) {
                 RemoveGui rg = (RemoveGui) e.getClickedInventory().getHolder();
                 int slot = rg.getPage() + e.getRawSlot();
                 e.setCancelled(true);
