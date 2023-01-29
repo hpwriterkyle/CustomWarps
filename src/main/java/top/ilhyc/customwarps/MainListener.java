@@ -77,7 +77,7 @@ public class MainListener implements Listener {//
         if(inventory!=null&&inventory.getHolder()!=null&&inventory.getHolder() instanceof RemoveGui) {
             e.setCancelled(true);
             if(inventory.equals(e.getView().getTopInventory())) {
-                RemoveGui rg = (RemoveGui) e.getClickedInventory().getHolder();
+                RemoveGui rg = (RemoveGui) inventory.getHolder();
                 int slot = rg.getPage() + e.getRawSlot();
                 e.setCancelled(true);
                 if (e.getSlotType() != InventoryType.SlotType.OUTSIDE) {

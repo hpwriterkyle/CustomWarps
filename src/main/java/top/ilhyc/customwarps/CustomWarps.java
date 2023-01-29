@@ -150,20 +150,26 @@ public final class CustomWarps extends JavaPlugin {
     public static void checkInValid(PluginData pd){
         OfflinePlayer p = Bukkit.getOfflinePlayer(PluginData.deleteYml(pd.f));
         String uuid = "player.uuid";
+        UUID id;
+        try{
+            id = p.getUniqueId();
+        }catch (NoSuchMethodError e){
+            id = p.getPlayer().getUniqueId();
+        }
         if(pd.getString(uuid)==null){
-            pd.set(uuid,p.getUniqueId().toString());
+            pd.set(uuid,id.toString());
             pd.save();
             return;
         }
-        if(p.getUniqueId().toString().equals(pd.getString(uuid))){
+        if(id.toString().equals(pd.getString(uuid))){
             return;
         }
         p = Bukkit.getPlayer(UUID.fromString(pd.getString(uuid)));
         if(!pd.f.renameTo(new File(CustomWarps.pis.playerdata,p.getName()+".yml"))){
-            PluginData pds = new PluginData(CustomWarps.pis.playerdata,p.getName()+".ym");
+            PluginData pds = new PluginData(CustomWarps.pis.playerdata,p.getName()+".yml");
             checkInValid(pds);
         }
-        pd.set(uuid,p.getUniqueId());
+        pd.set(uuid,p.getUniqueId().toString());
         pd.save();
     }
 
