@@ -30,7 +30,7 @@ public final class CustomWarps extends JavaPlugin {
     private static Economy eco = null;
     public static Map<Player, Location[]> limitedmap = new HashMap<>();
     public static MultiverseCore core;
-    private static final CustomWarper customWarper = new CustomWarper();
+    private static CustomWarper customWarper;
 
     @Override
     public void onEnable() {
@@ -63,6 +63,7 @@ public final class CustomWarps extends JavaPlugin {
             pis.logger("[CustomWarps]应当暂时已经成功安装Vault插件!");
         }
         loadConfig();
+        customWarper = new CustomWarper();
         pis.logger("插件已加载了"+map.keySet().size()+"个玩家的传送点组");
         pis.logger("插件已加载了"+limitfields.keySet().size()+"个限制区");
     }

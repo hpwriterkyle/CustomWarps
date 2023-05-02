@@ -1,6 +1,7 @@
 package top.ilhyc.customwarps.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,7 +44,7 @@ public class MainCommand implements CommandExecutor {
                     p.openInventory(RemoveGui.getGui(p, p.hasPermission("customwarps.playingon.be"),0));
                 } else if (strings.length > 1) {
                     if (strings[0].equalsIgnoreCase("setwarp")) {
-                        if (!PluginData.getConfig().getString("bannedworld").contains(p.getWorld().getName()) && CustomWarps.limitfields.values().stream().noneMatch(a -> a.inLimited(p.getLocation()))) {
+                        if (!CustomWarps.getApi().isBanned(p.getWorld()) && CustomWarps.limitfields.values().stream().noneMatch(a -> a.inLimited(p.getLocation()))) {
                             boolean allowed = CustomWarps.getEco() == null;
                             if (allowed|| CustomWarps.getEco().withdrawPlayer(commandSender.getName(), PluginData.getConfig().getInt("default.cost-set")).transactionSuccess()) {
                                 if (CustomWarps.map.get(p.getName()) == null) {//
@@ -112,7 +113,7 @@ public class MainCommand implements CommandExecutor {
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                             return true;
                         } else if (strings[0].equalsIgnoreCase("addlimit")) {
-                            PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
+              //              PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
                             try {
                                 int var1 = PluginData.getConfig().getInt("default.warps");
                                 try {
@@ -130,7 +131,7 @@ public class MainCommand implements CommandExecutor {
                             WarpPoint.restoreWarpPoint(CustomWarps.map.get(p.getName()), p);
                             return true;
                         } else if (strings[0].equalsIgnoreCase("removelimit")) {
-                            PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
+                        //    PluginData pds = new PluginData(CustomWarps.playerdata, replacedplayer(strings[1], p) + ".yml");
                             try {
                                 int var1 = PluginData.getConfig().getInt("default.warps");
                                 try {

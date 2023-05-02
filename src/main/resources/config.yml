@@ -12,8 +12,10 @@ gui:
   item:
     id: 133 #传送gui物品id
     data: 0 #传送gui物品附加值
-bannedworld: #禁用传送点的世界名
-  - idk
+bannedworld: #禁用传送点的世界名 精准匹配模式->世界名 模糊匹配模式->世界名:具体模式 其具体模式包括prefix,suffix,contains
+  - idk:prefix #以idk为前缀的世界 如idk_1 idk_sazdasads
+  - idk:suffix #以idk为后缀的世界 如1_idk asdsasada_idk
+  - idk:contains #包含idk的世界 如asdsadidk asdasidkassdas idkasdasdsa
 language:
   add-success: "&a添加成功!"
   add-failed: "&c你没有足够的传送点位了!"
