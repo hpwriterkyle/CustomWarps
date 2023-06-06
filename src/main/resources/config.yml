@@ -56,3 +56,4 @@ language:
   huge-number: "&c数字过大!"
   success-sync: "&a同步成功!"
   failed-sync: "&c%s的数据同步出现问题!"
+  reload-force: "&a因其插件重载而提供的全服gui自动关闭服务!"

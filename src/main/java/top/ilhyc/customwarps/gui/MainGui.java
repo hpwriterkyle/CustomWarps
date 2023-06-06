@@ -15,7 +15,7 @@ import top.ilhyc.customwarps.permissions.PermissionManager;
 
 import java.util.Arrays;
 
-public class MainGui implements Listener, InventoryHolder {
+public class MainGui implements Listener, InventoryHolder,WarpGui {
     Player p;
     int page = 0;
     @Override

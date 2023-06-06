@@ -14,6 +14,8 @@ import top.ilhyc.customwarps.commands.LimitCommand;
 import top.ilhyc.customwarps.commands.MainCommand;
 import top.ilhyc.customwarps.commands.MiscCommand;
 import top.ilhyc.customwarps.commands.SetCommand;
+import top.ilhyc.customwarps.gui.MainGui;
+import top.ilhyc.customwarps.gui.WarpGui;
 
 import java.io.File;
 import java.util.*;
@@ -72,6 +74,13 @@ public final class CustomWarps extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         pis.logger("[CustomWarps]此插件已关闭");
+        String s = CustomWarps.Auto(getConfig().getString("language.reload-force"));
+        Bukkit.getOnlinePlayers().stream().filter(a->a.getOpenInventory().getTopInventory()!=null).filter(a->a.getOpenInventory().getTopInventory().getHolder()!=null)
+                .filter(a->a.getOpenInventory().getTopInventory().getHolder() instanceof WarpGui)
+                .forEach(a->{
+                    a.sendMessage(s);
+                    a.closeInventory();
+                });
 //        if(customwarps.playerdata.listFiles()!=null) {
 //            for (Player op: Bukkit.getOnlinePlayers()) {
 //                WarpPoint.restoreWarpPoint(customwarps.map.get(op.getName()),op);

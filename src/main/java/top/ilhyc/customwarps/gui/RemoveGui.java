@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RemoveGui implements InventoryHolder {
+public class RemoveGui implements InventoryHolder,WarpGui{
     Player p;
     int page = 0;
     @Override
