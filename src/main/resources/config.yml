@@ -51,6 +51,7 @@ language:
   cooldown: "&c传送还在冷却中!"
   block-teleport: "&c传送被打断"
   start-teleport: "&a传送开始!"
+  progress-teleport: "&a%s"
   reload-success: "&a重装成功"
   success-set: "设置成功!"
   huge-number: "&c数字过大!"

@@ -2,7 +2,7 @@ name: CustomWarps
 version: '${project.version}'
 main: top.ilhyc.customwarps.CustomWarps
 description: just the customwarps
-softdepend: [Multiverse-Core,Vault]
+softdepend: [Multiverse-Core,Vault,PlaceHolderAPI]
 commands:
   customwarps:
     aliases: cw

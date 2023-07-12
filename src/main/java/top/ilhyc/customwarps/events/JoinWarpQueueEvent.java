@@ -56,7 +56,9 @@ public class JoinWarpQueueEvent extends PlayerEvent implements Cancellable {
                         this.cancel();
                         return;
                     }
-                    (getPlayer()).sendMessage(CustomWarps.Auto("&a") + i);
+                    String message = PluginData.getConfig().getString("language.progress-teleport");
+                    message = message==null?"%s":message;
+                    (getPlayer()).sendMessage(CustomWarps.Auto(String.format(message,i)));
                     if (!CustomWarps.warpqueue.keySet().contains(getPlayer().getUniqueId())) {
                         this.cancel();
                         (getPlayer()).sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.block-teleport")));

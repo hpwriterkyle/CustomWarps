@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import top.ilhyc.customwarps.CustomWarps;
@@ -15,10 +16,11 @@ import top.ilhyc.customwarps.gui.RemoveGui;
 import top.ilhyc.customwarps.permissions.PermissionManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainCommand implements CommandExecutor {
+public class MainCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
@@ -226,5 +228,13 @@ public class MainCommand implements CommandExecutor {
 
     private static int getAmount(Player p){
         return PermissionManager.getPermissionObject("customwarps.limit",p,Integer::parseInt);
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        if(strings.length>1){
+            return null;
+        }
+        return Arrays.asList("reload","warps","removewarp","setwarp");
     }
 }
