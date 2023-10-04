@@ -34,6 +34,7 @@ language:
     - "&c点击删除"
   help:
     - "&7=============================================="
+    - "&f/cw help &7查看其命令提示"
     - "&f/cw warps &7打开传送面板"
     - "&f/cw setwarp [id]"
     - "&f/cw removewarp"

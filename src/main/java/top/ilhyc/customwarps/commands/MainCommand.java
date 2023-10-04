@@ -45,6 +45,8 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     p.openInventory(MainGui.getGui(p, p.hasPermission("customwarps.playingon.be"),0));
                 } else if (strings[0].equalsIgnoreCase("removewarp")) {
                     p.openInventory(RemoveGui.getGui(p, p.hasPermission("customwarps.playingon.be"),0));
+                } else if(strings[0].equalsIgnoreCase("help")){
+                    PluginData.getConfig().getStringList("language.help").forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
                 } else if (strings.length > 1) {
                     if (strings[0].equalsIgnoreCase("setwarp")) {
                         if (!CustomWarps.getApi().isBanned(p.getWorld()) && CustomWarps.limitfields.values().stream().noneMatch(a -> a.inLimited(p.getLocation()))) {
@@ -160,7 +162,11 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     PluginData.getConfig().getStringList("language.help").stream().forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
             }
         } else {
-            PluginData.getConfig().getStringList("language.help").stream().forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
+                if (!CustomWarps.map.containsKey(p.getName())) {
+                    ArrayList<WarpPoint> awp = new ArrayList<>();
+                    CustomWarps.map.put(p.getName(), awp);
+                }
+                p.openInventory(MainGui.getGui(p, p.hasPermission("customwarps.playingon.be"),0));
         }
         }else{
             if(strings.length>0) {
