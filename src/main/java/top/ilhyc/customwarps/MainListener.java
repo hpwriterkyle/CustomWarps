@@ -6,15 +6,18 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
+import top.ilhyc.customwarps.commands.MainCommand;
 import top.ilhyc.customwarps.events.JoinWarpQueueEvent;
 import top.ilhyc.customwarps.events.LeaveWarpQueueEvent;
 import top.ilhyc.customwarps.events.PrelimitedEvent;
@@ -105,6 +108,19 @@ public class MainListener implements Listener {//
                 }
             }
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onChat(PlayerChatEvent e){
+        if(!MainCommand.keySet.contains(e.getPlayer().getUniqueId())){
+            return;
+        }
+        e.setCancelled(true);
+        MainCommand.keySet.remove(e.getPlayer().getUniqueId());
+        if(!CustomWarps.getApi().checkPermission(e.getPlayer().getUniqueId())){
+            return;
+        }
+        CustomWarps.getApi().createPoint(e.getPlayer().getUniqueId(),e.getMessage(),true);
     }
 
     @EventHandler

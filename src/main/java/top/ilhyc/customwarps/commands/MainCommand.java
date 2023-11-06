@@ -15,12 +15,11 @@ import top.ilhyc.customwarps.gui.MainGui;
 import top.ilhyc.customwarps.gui.RemoveGui;
 import top.ilhyc.customwarps.permissions.PermissionManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MainCommand implements CommandExecutor, TabCompleter {
+    public static Set<UUID> keySet = new HashSet<>();
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
@@ -48,7 +47,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     p.openInventory(RemoveGui.getGui(p, p.hasPermission("customwarps.playingon.be"),0));
                 } else if(strings[0].equalsIgnoreCase("help")){
                     PluginData.getConfig().getStringList("language.help").forEach(a -> p.sendMessage(CustomWarps.Auto(a)));
-                } else if (strings.length > 1) {
+                } else {
                     if (strings[0].equalsIgnoreCase("setwarp")) {
                         if (!CustomWarps.getApi().isBanned(p.getWorld()) && CustomWarps.limitfields.values().stream().noneMatch(a -> a.inLimited(p.getLocation()))) {
                             boolean allowed = CustomWarps.getEco() == null;
@@ -73,22 +72,26 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                                         return true;
                                     }
                                 }
-                                //                        if (customwarps.getEco().withdrawPlayer(p, PluginData.getConfig().getDouble("cost-set")).transactionSuccess()) {
-                                WarpPoint wp = new WarpPoint();
-                                List<WarpPoint> lwp = new ArrayList<>();
-                                if (CustomWarps.map.get(p.getName()) != null) {
-                                    lwp = CustomWarps.map.get(p.getName());
+                                if(strings.length>1) {
+                                    //                        if (customwarps.getEco().withdrawPlayer(p, PluginData.getConfig().getDouble("cost-set")).transactionSuccess()) {
+                                    WarpPoint wp = new WarpPoint();
+                                    List<WarpPoint> lwp = new ArrayList<>();
+                                    if (CustomWarps.map.get(p.getName()) != null) {
+                                        lwp = CustomWarps.map.get(p.getName());
+                                    }
+                                    wp.setOrder(lwp.size());
+                                    wp.setLocation(p.getLocation());
+                                    wp.setName(strings[1]);
+                                    lwp.add(wp);
+                                    CustomWarps.map.put(p.getName(), lwp);
+                                    WarpPoint.storeWarpPoint(wp, p);
+                                    p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.add-success")));
+                                    //            }else{
+                                    //                  p.sendMessage(customwarps.Auto(PluginData.getConfig().getString("language.cost-set-failed")));
+                                    //        }
+                                    return true;
                                 }
-                                wp.setOrder(lwp.size());
-                                wp.setLocation(p.getLocation());
-                                wp.setName(strings[1]);
-                                lwp.add(wp);
-                                CustomWarps.map.put(p.getName(), lwp);
-                                WarpPoint.storeWarpPoint(wp, p);
-                                p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.add-success")));
-                                //            }else{
-                                //                  p.sendMessage(customwarps.Auto(PluginData.getConfig().getString("language.cost-set-failed")));
-                                //        }
+                                keySet.add(p.getUniqueId());
                             } else {
                                 p.sendMessage(CustomWarps.Auto(PluginData.getConfig().getString("language.cost-set-failed")));
                             }
