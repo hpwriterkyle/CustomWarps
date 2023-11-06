@@ -29,6 +29,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             if (strings.length > 0) {
                 if (p.isOp()) {
                     if (strings[0].equalsIgnoreCase("reload")) {
+                        CustomWarps.pis.plugin.reloadConfig();
                         if (CustomWarps.playerdata.listFiles() != null) {
                             for (Player op : Bukkit.getOnlinePlayers()) {
                                 WarpPoint.restoreWarpPoint(CustomWarps.map.get(op.getName()), op);

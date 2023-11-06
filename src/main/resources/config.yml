@@ -25,7 +25,7 @@ language:
   cost-teleport-failed: "&c传送到传送点的金钱不足"
   success-teleport: "&a传送成功!"
   world-failed: "&c错误的世界" #若处于被限制区域中 亦会提示此信息!
-  item-description-normal:   #世界名变量为%w x,y,z轴标量分别为%x,%y,%z
+  item-description-normal:   #原世界名变量为%w mv别称世界名为%m x,y,z轴标量分别为%x,%y,%z
     - "&7点击传送"
     - "&f位于&7%w&7&o世界的&7%x,%y,%z"
   item-description-remove:
